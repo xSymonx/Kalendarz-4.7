@@ -153,7 +153,7 @@ namespace Kalendarz
                 IQueryable<Task> query = context.Tasks;
                 foreach (var item in query)
                 {
-                    string text = "• " + item.Data + " " + item.Nazwa + " " + item.ID + "\n";
+                    string text = "• " + item.Data + " " + item.Nazwa + " ID:" + item.ID + "\n";
                     Notes.Add(text);
                 }
 
