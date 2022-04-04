@@ -75,6 +75,7 @@ namespace Kalendarz
         {
             Add_Task_Window add_Task_Window = new Add_Task_Window();
             add_Task_Window.ShowDialog();
+            ShowTasks();
 
            /* if (String.Equals(add_Task_Window.Task, "BRAK")) return;
             else
@@ -88,6 +89,7 @@ namespace Kalendarz
         {
             Delete_Task_Window delete_Task_Window = new Delete_Task_Window();
             delete_Task_Window.ShowDialog();
+            ShowTasks();
 
             if (delete_Task_Window.Task_Index == 0) return;
             else
@@ -145,13 +147,13 @@ namespace Kalendarz
         public void ShowTasks()
         {
             //Form1.static_date = UserControlDays.static_day + "/" + Form1.static_month + "/" + Form1.static_year;
-
+            Notes.Clear();
             using (var context = new TaskContext())
             {
                 IQueryable<Task> query = context.Tasks;
                 foreach (var item in query)
                 {
-                    string text = "• " + item.Data + " " + item.Nazwa + "\n";
+                    string text = "• " + item.Data + " " + item.Nazwa + " " + item.ID + "\n";
                     Notes.Add(text);
                 }
 

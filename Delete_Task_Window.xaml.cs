@@ -38,15 +38,31 @@ namespace Kalendarz
             this.Close();
         }
 
+        public void DeleteTask(Task task)
+        {
+            using (var context = new TaskContext())
+            {
+                context.Tasks.Attach(task);
+                context.Entry(task).State = System.Data.Entity.EntityState.Deleted;
+                //context.Tasks.Remove(task);
+                context.SaveChanges();
+            }
+        }
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            int user_number = Int16.Parse(User_Text.Text);
-            if (user_number > 0 && user_number < 100)
+            int id = Int32.Parse(User_Text.Text);
+            using (var context = new TaskContext())
             {
-                Task_Index = user_number;
-                this.Close();
+                IQueryable<Task> query = context.Tasks;
+                foreach (var item in query)
+                {  
+                    if(item.ID == id)
+                    DeleteTask(item);
+                }
+
             }
+            this.Close();
         }
 
         private void Decline_Click(object sender, RoutedEventArgs e)

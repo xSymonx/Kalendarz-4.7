@@ -61,14 +61,14 @@
 
 
             <TextBlock 
-                Text="Enter the number of Task:"
+                Text="Enter the ID of Task:"
                 Grid.Row="1"
                 FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>
 
             <TextBox x:Name="User_Text"
                 Grid.Row="2"
-                Width="60"
+                Width="40"
                 HorizontalAlignment="Center" VerticalAlignment="Center"
                 FontSize="20"
                 TextAlignment="Center">
