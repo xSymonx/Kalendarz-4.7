@@ -1,0 +1,10 @@
+﻿<UserControl x:Class="Kalendarz.Days"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Kalendarz"
+             mc:Ignorable="d" 
+             d:DesignHeight="100" d:DesignWidth="100">
+    <Button x:Name="mybtn" Content=""  HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Height="100" Width="100" FontSize="20" Background="{x:Null}" Foreground="White" BorderBrush="{x:Null}" Click="mybtn_Click"/>
+</UserControl>

@@ -15,7 +15,7 @@
     <Border CornerRadius="20"
             Background="#33314d">
 
-        <Grid>
+        <Grid x:Name="MyGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="100" />
@@ -74,14 +74,21 @@
                 </StackPanel>
             </Button>
 
+            <DockPanel MaxHeight="200" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3"  HorizontalAlignment="Center" VerticalAlignment="Center">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <ItemsControl  x:Name="Months_List"
+                               ItemsSource="{Binding Months}"
+                               FontSize="40" >
+                    </ItemsControl>
+                </ScrollViewer>
+            </DockPanel>
 
 
 
-
-            <TextBlock x:Name="Month" Grid.Column="2" Grid.Row="1" 
+            <!--TextBlock x:Name="Months_List" Grid.Column="2" Grid.Row="1" 
                        Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Text="{Binding Months[0]}">
-            </TextBlock>
+                       Text="{Binding Months}">
+            </TextBlock-->
 
             <Button x:Name="Left_Arrow"
                     Grid.Column="1" Grid.Row="1"
@@ -279,7 +286,7 @@
             <TextBlock Grid.Column="0" Grid.Row="2"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        >
-                Mondey
+                Monday
             </TextBlock>
             <Rectangle Grid.Column="0" Grid.Row="2"  Stroke="White"/>
 
@@ -327,7 +334,7 @@
 
 
             <!--DATY-->
-            <Rectangle Grid.Column="0" Grid.Row="3"  Stroke="White"/>
+            <Rectangle Grid.Column="0" Grid.Row="3"  Stroke="White" />
             <Rectangle Grid.Column="0" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="6"  Stroke="White"/>
@@ -369,6 +376,8 @@
             <Rectangle Grid.Column="6" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="6" Grid.Row="7"  Stroke="White"/>
 
+
         </Grid>
+
     </Border>
 </Window>

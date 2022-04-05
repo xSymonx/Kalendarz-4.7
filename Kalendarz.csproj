@@ -73,6 +73,9 @@
     <Compile Include="Add_Task_Window.xaml.cs">
       <DependentUpon>Add_Task_Window.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Days.xaml.cs">
+      <DependentUpon>Days.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\202204041344458_InitialCreate.cs" />
     <Compile Include="Migrations\202204041344458_InitialCreate.designer.cs">
       <DependentUpon>202204041344458_InitialCreate.cs</DependentUpon>
@@ -88,6 +91,10 @@
     <Compile Include="Weather_Window.xaml.cs">
       <DependentUpon>Weather_Window.xaml</DependentUpon>
     </Compile>
+    <Page Include="Days.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Delete_Task_Window.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

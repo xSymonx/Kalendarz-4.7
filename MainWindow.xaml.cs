@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Newtonsoft.Json;
 using System.Net;
+using System.Globalization;
 
 namespace Kalendarz
 {
@@ -24,11 +25,12 @@ namespace Kalendarz
     public partial class MainWindow : Window
     {
         public int Month_Index { get; set; }
-        public ObservableCollection<string> Notes { get; set; } = new ObservableCollection<string>();
-        public List<string> Months;
-
+        public static ObservableCollection<string> Notes { get; set; } = new ObservableCollection<string>();
+        public static ObservableCollection<string> Months { get; set; } = new ObservableCollection<string>();
+        int month, year;
         public string Basic_City { get; set; } = "Wroclaw";
-
+        public static int static_month, static_year;
+        public static string static_date;
 
         public MainWindow()
         {
@@ -51,24 +53,65 @@ namespace Kalendarz
 
             Update_Weather();
             ShowTasks();
+            displayDays();
         }
 
         public void Right_Arrow_Click(object sender, RoutedEventArgs e)
         {
-            if (Month_Index < 7)
+            
+            month++;
+            if (month > 12)
             {
-                Month_Index++;
-                Month.Text = Months[Month_Index];
+                month = 1;
+                year++;
+            }
+            static_month = month;
+            static_year = year;
+            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            Months.Clear();
+            Months.Add(monthname + " " + year);
+
+
+            // get first day of month.
+            DateTime startofthemonth = new DateTime(year, month, 1);
+            // get the count of the days of the month
+            int days = DateTime.DaysInMonth(year, month);
+            // convert the startofthemonth to int
+            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d"));
+            // first create a blank usercontrol
+            if (dayoftheweek == 0)
+            {
+                dayoftheweek = 7;
+            }
+            int i = (dayoftheweek - 1);
+            int idx = 1;
+
+            for (int j = 3; j < 8; j++)
+            {
+                for (int k = i; k < 7; k++)
+                {
+                    Days ucDays = new Days();
+                    ucDays.days(idx);
+                    Grid.SetColumn(ucDays, k);
+                    Grid.SetRow(ucDays, j);
+                    MyGrid.Children.Add(ucDays);
+                    if (idx == days)
+                        break;
+                    idx++;
+                }
+                i = 0;
+                if (idx == days)
+                    break;
             }
         }
 
         private void Left_Arrow_Click(object sender, RoutedEventArgs e)
         {
-            if (Month_Index > 0)
+           /* if (Month_Index > 0)
             {
                 Month_Index--;
                 Month.Text = Months[Month_Index];
-            }
+            }*/
         }
 
         private void Add_Task_Click(object sender, RoutedEventArgs e)
@@ -77,11 +120,6 @@ namespace Kalendarz
             add_Task_Window.ShowDialog();
             ShowTasks();
 
-           /* if (String.Equals(add_Task_Window.Task, "BRAK")) return;
-            else
-            {
-                Notes.Add("• " + add_Task_Window.Task + "\n");
-            }*/
         }
 
 
@@ -146,17 +184,62 @@ namespace Kalendarz
         }
         public void ShowTasks()
         {
-            //Form1.static_date = UserControlDays.static_day + "/" + Form1.static_month + "/" + Form1.static_year;
+            //MainWindow.static_date = Days.static_day + "/" + MainWindow.static_month + "/" + MainWindow.static_year;
             Notes.Clear();
             using (var context = new TaskContext())
             {
-                IQueryable<Task> query = context.Tasks;
+                IQueryable<Task> query = context.Tasks; //.Where(T => T.Data == MainWindow.static_date);
                 foreach (var item in query)
                 {
                     string text = "• " + item.Data + " " + item.Nazwa + " ID:" + item.ID + "\n";
                     Notes.Add(text);
                 }
 
+            }
+        }
+        private void displayDays()
+        {
+            DateTime now = DateTime.Now;
+            month = now.Month;
+            year = now.Year;
+
+            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            Months.Clear();
+            Months.Add(monthname + " " + year);
+
+            static_month = month;
+            static_year = year;
+
+            // get first day of month.
+            DateTime startofthemonth = new DateTime(year, month, 1);
+            // get the count of the days of the month
+            int days = DateTime.DaysInMonth(year, month);
+            // convert the startofthemonth to int
+            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d"));
+            // first create a blank usercontrol
+            if (dayoftheweek == 0)
+            {
+                dayoftheweek = 7;
+            }
+            int i = (dayoftheweek - 1);
+            int idx = 1;
+
+            for (int j = 3; j < 8; j++)
+            {
+                for (int k = i; k < 7; k++)
+                {
+                    Days ucDays = new Days();
+                    ucDays.days(idx);
+                    Grid.SetColumn(ucDays, k);
+                    Grid.SetRow(ucDays, j);
+                    MyGrid.Children.Add(ucDays);
+                    if (idx == days)
+                        break;
+                    idx++;
+                }
+                i = 0;
+                if(idx == days)
+                  break;
             }
         }
     }
