@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kalendarz"
         mc:Ignorable="d"
-       Title="Kalendarz" Height="750" Width="1200"
+       Title="Kalendarz" Height="850" Width="1200"
         Foreground="White"
         WindowStyle="None"
         Background="Transparent"
@@ -29,6 +29,7 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
+                <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
                 <RowDefinition Height="100"/>
@@ -208,23 +209,62 @@
 
 
 
-            <TextBlock Grid.Column="7" Grid.Row="2"
+            <!--<TextBlock Grid.Column="7" Grid.Row="2"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        FontSize="50"
                        Text="TASKS:">
-            </TextBlock>
+            </TextBlock>-->
 
-            <DockPanel MaxHeight="700" Grid.Column="7" Grid.Row="3" Grid.RowSpan="4">
+
+
+            <Button x:Name="TASKS_BUTTON"
+                    Grid.Column="7" Grid.Row="2"
+                    FontSize="50"
+                    Cursor="Hand" 
+                    BorderBrush="{x:Null}" Foreground="White" Background="{x:Null}"
+                    Click="TASKS_BUTTON_Click">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{x:Null}">
+                                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+                TASKS:
+            </Button>
+
+
+            <DockPanel MaxHeight="700" Grid.Column="7" Grid.Row="3" Grid.RowSpan="5">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
-                    <ItemsControl  x:Name="Notes_List"
+                    <ListView  x:Name="Notes_List"
                                ItemsSource="{Binding Notes}"
-                               FontSize="20" Margin="50,0">
-                    </ItemsControl>
+                               FontSize="20" Margin="50,0"
+                               Background="#CCCCCC"
+                               Foreground="Black">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto"/>
+                                        <ColumnDefinition Width="auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.Column="0" Content="{Binding Data}"/>
+                                    <Label Grid.Column="1 " Content="{Binding Nazwa}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </ScrollViewer>
             </DockPanel>
 
             <Button x:Name="Add_Task"
-                    Grid.Column="7"    Grid.Row="7"
+                    Grid.Column="7"    Grid.Row="8"
                     FontSize="20"
                     Cursor="Hand" 
                     Click ="Add_Task_Click"
@@ -256,7 +296,7 @@
 
 
             <Button x:Name="Delete_Task"
-                    Grid.Column="7"    Grid.Row="7"
+                    Grid.Column="7"    Grid.Row="8"
                     FontSize="20"
                     Cursor="Hand" 
                     Click ="Delete_Task_Click"
@@ -334,49 +374,61 @@
 
 
             <!--DATY-->
-            <Rectangle Grid.Column="0" Grid.Row="3"  Stroke="White" />
+            <Rectangle Grid.Column="0" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="7"  Stroke="White"/>
+            <Rectangle Grid.Column="0" Grid.Row="8"  Stroke="White"/>
+
 
             <Rectangle Grid.Column="1" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="1" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="1" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="1" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="1" Grid.Row="7"  Stroke="White"/>
+            <Rectangle Grid.Column="1" Grid.Row="8"  Stroke="White"/>
+
 
             <Rectangle Grid.Column="2" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="2" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="2" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="2" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="2" Grid.Row="7"  Stroke="White"/>
+            <Rectangle Grid.Column="2" Grid.Row="8"  Stroke="White"/>
 
             <Rectangle Grid.Column="3" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="3" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="3" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="3" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="3" Grid.Row="7"  Stroke="White"/>
+            <Rectangle Grid.Column="3" Grid.Row="8"  Stroke="White"/>
+
 
             <Rectangle Grid.Column="4" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="4" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="4" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="4" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="4" Grid.Row="7"  Stroke="White"/>
+            <Rectangle Grid.Column="4" Grid.Row="8"  Stroke="White"/>
+
 
             <Rectangle Grid.Column="5" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="5" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="5" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="5" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="5" Grid.Row="7"  Stroke="White"/>
+            <Rectangle Grid.Column="5" Grid.Row="8"  Stroke="White"/>
 
             <Rectangle Grid.Column="6" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="6" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="6" Grid.Row="5"  Stroke="White"/>
             <Rectangle Grid.Column="6" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="6" Grid.Row="7"  Stroke="White"/>
+            <Rectangle Grid.Column="6" Grid.Row="8"  Stroke="White"/>
 
-            <WrapPanel x:Name="MyWrapPanel" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="5"/>
+
+            <WrapPanel x:Name="MyWrapPanel" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="6"/>
 
 
         </Grid>

@@ -31,15 +31,28 @@ namespace Kalendarz
         }
         public void ShowTasks()
         {
-            MainWindow.static_date = Days.static_day + "/" + MainWindow.static_month + "/" + MainWindow.static_year;
+            string temp_date;
+            
+            temp_date = Days.static_day + "/";
+            if (temp_date.Length != 3)
+                temp_date = "0" + temp_date;
+
+            if (MainWindow.static_month<10)
+                temp_date = temp_date + "0" + MainWindow.static_month + "/";
+            else
+                temp_date = temp_date + MainWindow.static_month + "/";
+
+            MainWindow.static_date = temp_date + MainWindow.static_year;
+
             MainWindow.Notes.Clear();
             using (var context = new TaskContext())
             {
                 IQueryable<Task> query = context.Tasks.Where(T => T.Data == MainWindow.static_date);
                 foreach (var item in query)
                 {
-                    string text = "• " + item.Data + " " + item.Nazwa + " ID:" + item.ID + "\n";
-                    MainWindow.Notes.Add(text);
+                    //string text = "• " + item.Data + " " + item.Nazwa + " ID:" + item.ID + "\n";
+                    string text = "• " + item.Data + " " + item.Nazwa + " ID:" + MainWindow.static_date + "\n";
+                    MainWindow.Notes.Add(item);
                 }
 
             }

@@ -78,7 +78,7 @@
             </TextBox>
             
             <TextBlock 
-                Text="Enter the date of the task: (ex 4/4/2022)"
+                Text="Enter the date of the task: (ex 15/6/2022)"
                 Grid.Row="3"
                 FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>

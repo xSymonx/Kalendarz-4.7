@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -53,9 +54,11 @@ namespace Kalendarz
         {
             var Task = new Task();
             Task.Nazwa = User_Text.Text;
-            Task.Data = User_Date.Text;
-            string date = User_Date.Text;
-            int wynik;
+
+            if (Regex.IsMatch(User_Date.Text, @"(((0|1)[0-9]|2[0-9]|3[0-1])\/(0[1-9]|1[0-2])\/((19|20)\d\d))$"))
+                Task.Data = User_Date.Text;
+            else
+                Task.Data = "";
             AddNewTask(Task);
             this.Close();
         }

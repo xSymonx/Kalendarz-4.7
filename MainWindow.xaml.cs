@@ -25,7 +25,7 @@ namespace Kalendarz
     public partial class MainWindow : Window
     {
         public int Month_Index { get; set; }
-        public static ObservableCollection<string> Notes { get; set; } = new ObservableCollection<string>();
+        public static ObservableCollection<Task> Notes { get; set; } = new ObservableCollection<Task>();
         public static ObservableCollection<string> Months { get; set; } = new ObservableCollection<string>();
         int month, year;
         public string Basic_City { get; set; } = "Wroclaw";
@@ -136,15 +136,13 @@ namespace Kalendarz
         private void Delete_Task_Click(object sender, RoutedEventArgs e)
         {
             Delete_Task_Window delete_Task_Window = new Delete_Task_Window();
-            delete_Task_Window.ShowDialog();
-            ShowTasks();
-
-            if (delete_Task_Window.Task_Index == 0) return;
-            else
+            Task temp = (Task)Notes_List.SelectedItem;
+            if (temp != null)
             {
-                Notes.RemoveAt(delete_Task_Window.Task_Index - 1);
+                delete_Task_Window.Task_Index = temp.ID;
+                delete_Task_Window.ShowDialog();
+                ShowTasks();
             }
-
         }
 
         public void Update_Weather()
@@ -192,6 +190,12 @@ namespace Kalendarz
         {
             this.Close();
         }
+
+        private void TASKS_BUTTON_Click(object sender, RoutedEventArgs e)
+        {
+            ShowTasks();   
+        }
+
         public void ShowTasks()
         {
             //MainWindow.static_date = Days.static_day + "/" + MainWindow.static_month + "/" + MainWindow.static_year;
@@ -202,7 +206,7 @@ namespace Kalendarz
                 foreach (var item in query)
                 {
                     string text = "• " + item.Data + " " + item.Nazwa + " ID:" + item.ID + "\n";
-                    Notes.Add(text);
+                    Notes.Add(item);
                 }
 
             }

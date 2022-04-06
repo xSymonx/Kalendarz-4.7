@@ -51,9 +51,5 @@ namespace Kalendarz
         public string API_Key { get; set; }
     }
 
-    internal class Localization
-    {
-        int a;
-    }
 }
 

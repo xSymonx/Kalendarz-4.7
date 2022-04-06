@@ -7,6 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
     <Grid>
-        <TextBox HorizontalAlignment="Center" Margin="0,32,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="100" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" SelectionBrush="{x:Null}"/>
+        <TextBox HorizontalAlignment="Center" 
+                 Margin="0,32,0,0" TextWrapping="Wrap" 
+                 VerticalAlignment="Top" Width="100" 
+                 Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" SelectionBrush="{x:Null}"
+                 Visibility="Hidden"  />
     </Grid>
 </UserControl>

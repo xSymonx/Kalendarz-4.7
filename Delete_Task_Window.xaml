@@ -61,32 +61,10 @@
 
 
             <TextBlock 
-                Text="Enter the ID of Task:"
-                Grid.Row="1"
+                Text="Are you sure you want to delete this task?"
+                Grid.Row="1" Grid.RowSpan="2"
                 FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center">
             </TextBlock>
-
-            <TextBox x:Name="User_Text"
-                Grid.Row="2"
-                Width="40"
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                FontSize="20"
-                TextAlignment="Center">
-            </TextBox>
-
-
-
-            <!--<Button x:Name="Accept"
-                    Grid.Row="2"
-                    Width="100"
-                    Content="Potwierdź"
-                    FontSize="15"
-                    Margin="60,0,0,0"
-                    Cursor="Hand"
-                    HorizontalAlignment="Left"
-                    Click="Accept_Click">
-            </Button>-->
-
 
             <Button x:Name="Accept"
                     Grid.Row="3"
@@ -118,18 +96,6 @@
                 </StackPanel>
             </Button>
 
-            <!--<Button x:Name="Decline"
-                    Grid.Row="2"
-                    Width="100"
-                    Content="Anuluj"
-                    FontSize="15"
-                    Margin="0,0,60,0"
-                    Cursor="Hand"
-                    HorizontalAlignment="Right"
-                    Click="Decline_Click">
-            </Button>-->
-
-
             <Button x:Name="Decline"
                     Grid.Row="3"
                     FontSize="20"
@@ -155,10 +121,6 @@
                     <Image Source="Images\decline.png" Width="40" Height="30" HorizontalAlignment="Right"/>
                 </StackPanel>
             </Button>
-
-
-
-
 
 
 

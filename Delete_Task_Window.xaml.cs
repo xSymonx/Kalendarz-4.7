@@ -51,13 +51,13 @@ namespace Kalendarz
 
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
-            int id = Int32.Parse(User_Text.Text);
+            //int id = Int32.Parse(User_Text.Text);
             using (var context = new TaskContext())
             {
                 IQueryable<Task> query = context.Tasks;
                 foreach (var item in query)
                 {  
-                    if(item.ID == id)
+                    if(item.ID == Task_Index)
                     DeleteTask(item);
                 }
 
