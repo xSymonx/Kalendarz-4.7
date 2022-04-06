@@ -35,22 +35,7 @@ namespace Kalendarz
         public MainWindow()
         {
             this.DataContext = this;
-
-
-            //Notes.Add("• mycie zębów\n");
-            //Notes.Add("• pisanie programu\n");
-            //Notes.Add("• Obiad\n");
-
-            //Months.Add("March 2022");
-            //Months.Add("April 2022");
-            //Months.Add("May 2022");
-            //Months.Add("June 2022");
-            //Months.Add("July 2022");
-            //Months.Add("August 2022");
-            //Months.Add("September 2022");
-
             InitializeComponent();
-
             Update_Weather();
             ShowTasks();
             displayDays();
@@ -70,7 +55,7 @@ namespace Kalendarz
             string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
             Months.Clear();
             Months.Add(monthname + " " + year);
-
+            MyWrapPanel.Children.Clear();
 
             // get first day of month.
             DateTime startofthemonth = new DateTime(year, month, 1);
@@ -83,35 +68,60 @@ namespace Kalendarz
             {
                 dayoftheweek = 7;
             }
-            int i = (dayoftheweek - 1);
-            int idx = 1;
 
-            for (int j = 3; j < 8; j++)
+            for (int j = 1; j < dayoftheweek; j++)
             {
-                for (int k = i; k < 7; k++)
-                {
-                    Days ucDays = new Days();
-                    ucDays.days(idx);
-                    Grid.SetColumn(ucDays, k);
-                    Grid.SetRow(ucDays, j);
-                    MyGrid.Children.Add(ucDays);
-                    if (idx == days)
-                        break;
-                    idx++;
-                }
-                i = 0;
-                if (idx == days)
-                    break;
+                Blank blank = new Blank();
+                MyWrapPanel.Children.Add(blank);
+            }
+
+            for (int j = 1; j <= days; j++)
+            {
+                Days ucDays2 = new Days();
+                ucDays2.days(j);
+                MyWrapPanel.Children.Add(ucDays2);
             }
         }
 
         private void Left_Arrow_Click(object sender, RoutedEventArgs e)
         {
-           /* if (Month_Index > 0)
+            month--;
+            if (month < 1)
             {
-                Month_Index--;
-                Month.Text = Months[Month_Index];
-            }*/
+                month = 12;
+                year--;
+            }
+            static_month = month;
+            static_year = year;
+            string monthname = DateTimeFormatInfo.CurrentInfo.GetMonthName(month);
+            Months.Clear();
+            Months.Add(monthname + " " + year);
+            MyWrapPanel.Children.Clear();
+
+            // get first day of month.
+            DateTime startofthemonth = new DateTime(year, month, 1);
+            // get the count of the days of the month
+            int days = DateTime.DaysInMonth(year, month);
+            // convert the startofthemonth to int
+            int dayoftheweek = Convert.ToInt32(startofthemonth.DayOfWeek.ToString("d"));
+            // first create a blank usercontrol
+            if (dayoftheweek == 0)
+            {
+                dayoftheweek = 7;
+            }
+
+            for (int j = 1; j < dayoftheweek; j++)
+            {
+                Blank blank = new Blank();
+                MyWrapPanel.Children.Add(blank);
+            }
+
+            for (int j = 1; j <= days; j++)
+            {
+                Days ucDays2 = new Days();
+                ucDays2.days(j);
+                MyWrapPanel.Children.Add(ucDays2);
+            }
         }
 
         private void Add_Task_Click(object sender, RoutedEventArgs e)
@@ -221,26 +231,21 @@ namespace Kalendarz
             {
                 dayoftheweek = 7;
             }
-            int i = (dayoftheweek - 1);
-            int idx = 1;
 
-            for (int j = 3; j < 8; j++)
+            for (int j = 1; j < dayoftheweek; j++)
             {
-                for (int k = i; k < 7; k++)
-                {
-                    Days ucDays = new Days();
-                    ucDays.days(idx);
-                    Grid.SetColumn(ucDays, k);
-                    Grid.SetRow(ucDays, j);
-                    MyGrid.Children.Add(ucDays);
-                    if (idx == days)
-                        break;
-                    idx++;
-                }
-                i = 0;
-                if(idx == days)
-                  break;
+                Blank blank = new Blank();
+                MyWrapPanel.Children.Add(blank);
             }
+
+            for (int j = 1; j <= days; j++)
+            {
+                Days ucDays2 = new Days();
+                ucDays2.days(j);
+                MyWrapPanel.Children.Add(ucDays2);
+            }
+
+
         }
     }
 }

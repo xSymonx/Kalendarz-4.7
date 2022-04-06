@@ -376,6 +376,8 @@
             <Rectangle Grid.Column="6" Grid.Row="6"  Stroke="White"/>
             <Rectangle Grid.Column="6" Grid.Row="7"  Stroke="White"/>
 
+            <WrapPanel x:Name="MyWrapPanel" Grid.Row="3" Grid.ColumnSpan="7" Grid.RowSpan="5"/>
+
 
         </Grid>
 
