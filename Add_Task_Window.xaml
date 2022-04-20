@@ -11,9 +11,12 @@
         Background="Transparent"
         AllowsTransparency="True"
         >
-
+    
+    <!--Ustawienie zaokragonych rogów okna-->
     <Border CornerRadius="20"
             Background="#33314d" Margin="0,0,0,0">
+        
+        <!--Ustawienie ilości oraz wielkości kolumn i wierszy-->
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
@@ -28,6 +31,7 @@
                 <RowDefinition Height="70"/>
             </Grid.RowDefinitions>
 
+            <!--Przycisk służący za spersonalizowaną górną belke okna-->
             <Button x:Name="Bar"
                     Grid.Column="0" Grid.Row="0"
                     BorderBrush="#282538" Background="#282538"
@@ -49,7 +53,7 @@
                 </Button.Style>
             </Button>
 
-
+            <!--Przycisk służący do wyłączania aplikacji-->
             <Button x:Name="Exit"
                     Grid.Row="0"
                     Cursor="Hand" 
@@ -64,7 +68,7 @@
             </Button>
 
 
-
+        <!--Wyświetlanie treści okna-->
             <TextBlock 
                 Text="Enter the content of the task:"
                 Grid.Row="1"
@@ -88,17 +92,8 @@
                 Margin="20,20"
                 FontSize="18">
             </TextBox>
-            <!--<Button x:Name="Accept"
-                    Grid.Row="2"
-                    Width="100"
-                    Content="Potwierdź"
-                    FontSize="15"
-                    Margin="60,0,0,0"
-                    Cursor="Hand"
-                    HorizontalAlignment="Left"
-                    Click="Accept_Click">
-            </Button>-->
 
+            <!--Przycisk służący do akceptacji podanego zadania-->
             <Button x:Name="Accept"
                     Grid.Row="5"
                     FontSize="20"
@@ -129,18 +124,7 @@
                 </StackPanel>
             </Button>
 
-            <!--<Button x:Name="Decline"
-                    Grid.Row="2"
-                    Width="100"
-                    Content="Anuluj"
-                    FontSize="15"
-                    Margin="0,0,60,0"
-                    Cursor="Hand"
-                    HorizontalAlignment="Right"
-                    Click="Decline_Click">
-            </Button>-->
-
-
+            <!--Przycisk służący do anulowania dodawania zadania-->
             <Button x:Name="Decline"
                     Grid.Row="5"
                     FontSize="20"

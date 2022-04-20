@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Kalendarz
 {
+    /// <summary>
+    /// Budowa klasy WeatherApi
+    /// </summary>
     internal class WeatherApi
     {
         public class coord
@@ -47,9 +50,6 @@ namespace Kalendarz
             public wind wind { get; set; }
             public sys sys { get; set; }
         }
-
-        public string API_Key { get; set; }
     }
-
 }
 

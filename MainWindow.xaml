@@ -5,16 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Kalendarz"
         mc:Ignorable="d"
-       Title="Kalendarz" Height="850" Width="1200"
+        Title="Kalendarz" Height="850" Width="1200"
         Foreground="White"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
         >
-
+    <!--Ustawienie zaokragonych rogów okna-->
     <Border CornerRadius="20"
             Background="#33314d">
-
+		
+        <!--Ustawienie ilości oraz wielkości kolumn i wierszy-->
         <Grid x:Name="MyGrid">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="100" />
@@ -26,7 +27,6 @@
                 <ColumnDefinition Width="100" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
                 <RowDefinition Height="100"/>
@@ -39,7 +39,7 @@
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
 
-
+            <!--Przycisk służący za spersonalizowaną górną belke okna-->
             <Button x:Name="Bar"
                     Grid.Column="0" Grid.Row="0"
                     Grid.ColumnSpan="8"
@@ -61,7 +61,8 @@
                     </Style>
                 </Button.Style>
             </Button>
-
+			
+            <!--Przycisk służący do wyłączania aplikacji-->
             <Button x:Name="Exit"
                     Grid.Column="7"    Grid.Row="0"
                     Cursor="Hand" 
@@ -75,6 +76,7 @@
                 </StackPanel>
             </Button>
 
+			<!--Wyświetlanie miesięcy-->
             <DockPanel MaxHeight="200" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="3"  HorizontalAlignment="Center" VerticalAlignment="Center">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ItemsControl  x:Name="Months_List"
@@ -84,13 +86,7 @@
                 </ScrollViewer>
             </DockPanel>
 
-
-
-            <!--TextBlock x:Name="Months_List" Grid.Column="2" Grid.Row="1" 
-                       Grid.ColumnSpan="3" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Center"
-                       Text="{Binding Months}">
-            </TextBlock-->
-
+			<!--Przycisk do zmiany aktualnie wyświetlanego miesiąca (w tył)-->
             <Button x:Name="Left_Arrow"
                     Grid.Column="1" Grid.Row="1"
                     FontSize="50"
@@ -113,6 +109,7 @@
                 &lt;
             </Button>
 
+			<!--Przycisk do zmiany aktualnie wyświetlanego miesiąca (w przód)-->
             <Button x:Name="Right_Arrow"
                     Grid.Column="5" Grid.Row="1"
                     FontSize="50"
@@ -135,11 +132,13 @@
                 &gt;
             </Button>
 
-            <!--POGODA-->
+        <!--POGODA-->
             <TextBlock x:Name="City" Grid.Column="7" Grid.Row="1" 
                        FontSize="30" HorizontalAlignment="Left" VerticalAlignment="Center"
                        Margin="5,0,0,0"
-                       Text="{Binding}">
+                       Text="{Binding}"
+                       TextTrimming="CharacterEllipsis"
+                       MaxWidth="120">
             </TextBlock>
 
             <TextBlock x:Name="Temperature" Grid.Column="7" Grid.Row="1" 
@@ -160,7 +159,8 @@
                        Margin="300,0,0,0"
                        Text="{Binding}">
             </TextBlock>
-
+               
+			<!--Przycisk do odświeżania pogody-->
             <Button x:Name="Refresh_Weather"
                     Grid.Column="7"    Grid.Row="1"
                     Cursor="Hand" 
@@ -174,6 +174,7 @@
                 </StackPanel>
             </Button>
 
+			<!--Przycisk do pokazywania szczegółów pogodowych-->
             <Button x:Name="Details"
                     Grid.Column="7"    Grid.Row="1"
                     FontSize="12"
@@ -203,21 +204,8 @@
             </Button>
 
 
-
-
-
-
-
-
-            <!--<TextBlock Grid.Column="7" Grid.Row="2"
-                       HorizontalAlignment="Center" VerticalAlignment="Center"
-                       FontSize="50"
-                       Text="TASKS:">
-            </TextBlock>-->
-
-
-
-            <Button x:Name="TASKS_BUTTON"
+			<!--Przycisk do pokazywania szczegółów pogodowych-->
+			<Button x:Name="TASKS_BUTTON"
                     Grid.Column="7" Grid.Row="2"
                     FontSize="50"
                     Cursor="Hand" 
@@ -239,7 +227,9 @@
                 TASKS:
             </Button>
 
-
+			
+		<!--Zadania/Notatki-->
+			<!--Wyświetlanie zadań-->
             <DockPanel MaxHeight="700" Grid.Column="7" Grid.Row="3" Grid.RowSpan="5">
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
                     <ListView  x:Name="Notes_List"
@@ -263,6 +253,7 @@
                 </ScrollViewer>
             </DockPanel>
 
+			<!--Przycisk wywołujący okno dodawania zadań-->
             <Button x:Name="Add_Task"
                     Grid.Column="7"    Grid.Row="8"
                     FontSize="20"
@@ -294,7 +285,7 @@
             </Button>
 
 
-
+			<!--Przycisk wywołujący okno usuwania zadań-->
             <Button x:Name="Delete_Task"
                     Grid.Column="7"    Grid.Row="8"
                     FontSize="20"
@@ -321,8 +312,8 @@
                 </StackPanel>
             </Button>
 
-            <!--DNI TYGODNIA-->
-
+			
+        <!--DNI TYGODNIA-->
             <TextBlock Grid.Column="0" Grid.Row="2"
                        HorizontalAlignment="Center" VerticalAlignment="Center"
                        >
@@ -373,7 +364,7 @@
             <Rectangle Grid.Column="6" Grid.Row="2"  Stroke="White"/>
 
 
-            <!--DATY-->
+        <!--DATY-->
             <Rectangle Grid.Column="0" Grid.Row="3"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="4"  Stroke="White"/>
             <Rectangle Grid.Column="0" Grid.Row="5"  Stroke="White"/>
@@ -432,6 +423,5 @@
 
 
         </Grid>
-
     </Border>
 </Window>

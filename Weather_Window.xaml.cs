@@ -21,24 +21,42 @@ namespace Kalendarz
     /// </summary>
     public partial class Weather_Window : Window
     {
-        public string Basic_City { get; set; } = "Wroclaw";
+        /// <summary>
+        /// Nazwa miasta dla którego pobierana jest aktualna pogoda
+        /// </summary>
+        private string Basic_City { get; set; } = "Wroclaw";
+
+        /// <summary>
+        /// Kontruktor klasy Weather_Window
+        /// </summary>
         public Weather_Window()
         {
             InitializeComponent();
             Update_Weather();
         }
 
+        /// <summary>
+        /// Metoda obsługująca API oraz aktualizująca informacje o pogodzie 
+        /// </summary>
         public void Update_Weather()
         {
             using (WebClient web = new WebClient())
             {
-                //string url = String.Format("https://api.openweathermap.org/data/2.5/weather?q={0}&appid=35b19726b000ef946b6c90c401ad576e", Basic_City);
+                //Brak podania miasta przez użytkowania anuluje akutalizacje pogody
+                if (Basic_City == "")
+                   return;
+
+                //Pobranie geolokalizacji podanego miasta
                 string url_localization = String.Format("http://api.openweathermap.org/geo/1.0/direct?q={0}&limit=1&appid=35b19726b000ef946b6c90c401ad576e", Basic_City);
                 string url_string = web.DownloadString(url_localization);
                 string lat = "lat";
                 string lon = "lon";
-
                 int start = url_string.IndexOf(lat) + lat.Length + 2;
+
+                //Podanie nieprawidłowej nazwy miasta anuluje akutalizacje pogody
+                if (start == 4)
+                  return;
+
                 int end = url_string.IndexOf(",", start);
                 string lat_number = url_string.Substring(start, end - start);
 
@@ -46,7 +64,7 @@ namespace Kalendarz
                 end = url_string.IndexOf(",", start);
                 string lon_number = url_string.Substring(start, end - start);
 
-                //string url = String.Format("https://api.openweathermap.org/data/2.5/weather?lat=51.1089776&lon=17.0326689&appid=35b19726b000ef946b6c90c401ad576e&units=metric");
+                //Pobranie informacji o pogodzie dla danych danych geolokalizacyjnych
                 string url = String.Format("https://api.openweathermap.org/data/2.5/weather?lat={0}&lon={1}&appid=35b19726b000ef946b6c90c401ad576e&units=metric", lat_number, lon_number);
                 var json = web.DownloadString(url);
                 WeatherApi.WeatherInfo Info = JsonConvert.DeserializeObject<WeatherApi.WeatherInfo>(json);
@@ -57,7 +75,7 @@ namespace Kalendarz
                 Uri Image_Source = new Uri("https://openweathermap.org/img/w/" + Info.weather[0].icon + ".png", UriKind.RelativeOrAbsolute);
                 Image.Source = new BitmapImage(Image_Source);
 
-
+                //Wczytanie informacji pogodowych
                 Temperature.Text = Info.main.temp.ToString() + "°C";
                 feels_like.Text = Info.main.feels_like.ToString() + "°C";
                 temp_min.Text = Info.main.temp_min.ToString() + "°C";
@@ -68,35 +86,42 @@ namespace Kalendarz
 
                 wind_speed.Text = Info.wind.speed.ToString() + "m/s";
 
-                //country.Text = Info.sys.country;
-
                 DateTime dateTime_sunrise = UnixTimeStampToDateTime(Info.sys.sunrise);
                 DateTime dateTime_sunset = UnixTimeStampToDateTime(Info.sys.sunset);
 
                 sunrise.Text = dateTime_sunrise.ToString("HH:mm");
                 sunset.Text = dateTime_sunset.ToString("HH:mm");
-
-
-
-
-
             }
         }
 
+        /// <summary>
+        /// Konwersja czasu unixowego do czasu datowego
+        /// </summary>
+        /// <param name="unixTimeStamp"></param>
+        /// <returns></returns>
         public static DateTime UnixTimeStampToDateTime(double unixTimeStamp)
         {
-            // Unix timestamp is seconds past epoch
             DateTime dateTime = new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc);
             dateTime = dateTime.AddSeconds(unixTimeStamp).ToLocalTime();
             return dateTime;
         }
 
+        /// <summary>
+        /// Aktualizacja danych pogodowych dla podanego miasta
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Search_Click(object sender, RoutedEventArgs e)
         {
             Basic_City = User_Text.Text;
             Update_Weather();
-
         }
+
+        /// <summary>
+        /// Zmiana pozycji okna na ekranie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Bar_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == System.Windows.Input.MouseButton.Left)
@@ -106,8 +131,14 @@ namespace Kalendarz
             }
         }
 
+        /// <summary>
+        /// Zamknięcie okna
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            MainWindow.Basic_City = Basic_City;
             this.Close();
         }
     }

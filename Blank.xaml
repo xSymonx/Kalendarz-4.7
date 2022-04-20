@@ -6,6 +6,8 @@
              xmlns:local="clr-namespace:Kalendarz"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
+
+    <!--Pusta kontrolka wykorzysytwana w algorytmie wyświetalania dni-->
     <Grid>
         <TextBox HorizontalAlignment="Center" 
                  Margin="0,32,0,0" TextWrapping="Wrap" 

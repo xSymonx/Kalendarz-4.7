@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
 
-    
 
+    <!--Przycisk służący do wyświetalnia zadań z danego dnia-->
     <Button x:Name="mybtn" Content=""  
             HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" 
             Height="100" Width="100" FontSize="20" 

@@ -20,6 +20,9 @@ namespace Kalendarz
     /// </summary>
     public partial class Blank : UserControl
     {
+        /// <summary>
+        /// Konstruktor klasy Blank
+        /// </summary>
         public Blank()
         {
             InitializeComponent();

@@ -16,17 +16,24 @@ using System.Windows.Shapes;
 namespace Kalendarz
 {
     /// <summary>
-    /// Logika interakcji dla klasy Window1.xaml
+    /// Logika interakcji dla klasy Add_Task_Window.xaml
     /// </summary>
     public partial class Add_Task_Window : Window
     {
-        public string Task { get; set; } = "BRAK";
+        /// <summary>
+        /// Konstruktor klasy Add_Task_Window
+        /// </summary>
         public Add_Task_Window()
         {
             this.DataContext = this;
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Zmiana pozycji okna na ekranie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Bar_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == System.Windows.Input.MouseButton.Left)
@@ -36,11 +43,20 @@ namespace Kalendarz
             }
         }
 
+        /// <summary>
+        /// Zamknięcie okna
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
+        /// <summary>
+        /// Dodanie zadania do bazy danych
+        /// </summary>
+        /// <param name="Task"></param>
         public void AddNewTask(Task Task)
         {
             using (var context = new TaskContext())
@@ -50,6 +66,11 @@ namespace Kalendarz
             }
         }
 
+        /// <summary>
+        /// Zatwierdzenie i obsługa danych podanych przez użytkowanika
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Accept_Click(object sender, RoutedEventArgs e)
         {
             var Task = new Task();
@@ -63,9 +84,13 @@ namespace Kalendarz
             this.Close();
         }
 
+        /// <summary>
+        /// Anulowanie dodania zadania
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Decline_Click(object sender, RoutedEventArgs e)
         {
-            Task = "BRAK";
             this.Close();
         }
     }
