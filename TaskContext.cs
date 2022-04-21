@@ -5,7 +5,7 @@ using System.Linq;
 namespace Kalendarz
 {
     /// <summary>
-    /// Klasa tworz¹ca most miêdzy aplikacj¹ a baz¹ danych
+    /// Klasa tworzaca most miedzy aplikacja a baza danych
     /// </summary>
     public class TaskContext : DbContext
     {
@@ -26,7 +26,8 @@ namespace Kalendarz
             this.Configuration.LazyLoadingEnabled = false;
         }
         /// <summary>
-        /// Opis tabeli znajduj¹cej siê w bazie danych
+        /// Opis tabeli znajdujacej siê w bazie danych
         /// </summary>
         public DbSet<Task> Tasks { get; set; }
+    }
 }
