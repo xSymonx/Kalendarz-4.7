@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Kalendarz
 {
+    /// <summary>
+    /// Klasa tworz¹ca most miêdzy aplikacj¹ a baz¹ danych
+    /// </summary>
     public class TaskContext : DbContext
     {
         // Your context has been configured to use a 'TaskContext' connection string from your application's 
@@ -12,22 +15,18 @@ namespace Kalendarz
         // 
         // If you wish to target a different database and/or database provider, modify the 'TaskContext' 
         // connection string in the application configuration file.
+
+
+        /// <summary>
+        /// Konstruktor klasy kontekstu
+        /// </summary>
         public TaskContext()
             : base("name=TaskContext")
         {
             this.Configuration.LazyLoadingEnabled = false;
         }
+        /// <summary>
+        /// Opis tabeli znajduj¹cej siê w bazie danych
+        /// </summary>
         public DbSet<Task> Tasks { get; set; }
-
-        // Add a DbSet for each entity type that you want to include in your model. For more information 
-        // on configuring and using a Code First model, see http://go.microsoft.com/fwlink/?LinkId=390109.
-
-        // public virtual DbSet<MyEntity> MyEntities { get; set; }
-    }
-
-    //public class MyEntity
-    //{
-    //    public int Id { get; set; }
-    //    public string Name { get; set; }
-    //}
 }

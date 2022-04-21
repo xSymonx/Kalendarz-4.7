@@ -20,15 +20,28 @@ namespace Kalendarz
     /// </summary>
     public partial class Days : UserControl
     {
+        /// <summary>
+        /// Zmienna statyczna przechowująca dzień
+        /// </summary>
         public static string static_day;
+        /// <summary>
+        /// Konstruktor klasy Days
+        /// </summary>
         public Days()
         {
             InitializeComponent();
         }
+        /// <summary>
+        /// Wpisanie numeru dnia w przycisk w kalendarzu
+        /// </summary>
+        /// <param name="numday"></param>
         public void days(int numday)
         {
             mybtn.Content = numday + "";
         }
+        /// <summary>
+        /// Funkcja wyświetlająca zadania
+        /// </summary>
         public void ShowTasks()
         {
             string temp_date;
@@ -57,6 +70,11 @@ namespace Kalendarz
 
             }
         }
+        /// <summary>
+        /// Pobieranie numeru dnia oraz wyświetlenie zadań przypisanych do tego dnia
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void mybtn_Click(object sender, RoutedEventArgs e)
         {
             static_day = (string)mybtn.Content;
